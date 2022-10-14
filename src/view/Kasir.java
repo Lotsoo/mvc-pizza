@@ -4,6 +4,9 @@
  */
 package view;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 
 /**
  *
@@ -15,6 +18,8 @@ public class Kasir extends javax.swing.JFrame {
      * Creates new form Kasir
      */
     
+    NumberFormat nf = NumberFormat.getNumberInstance(new Locale("in", "ID"));
+
 
     public Kasir() {
         initComponents();
@@ -258,11 +263,54 @@ public class Kasir extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbnmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbnmActionPerformed
+        switch (cmbnm.getSelectedIndex()) {
+            case 1: {
+                txtharga.setText(nf.format(100000));
+            }
+            break;
+            case 2: {
+                txtharga.setText(nf.format(100000));
+            }
+            break;
+            case 3: {
+                txtharga.setText(nf.format(100000));
+            }
+            break;
+            case 4: {
+                txtharga.setText(nf.format(100000));
+            }
+            break;
+            default:
+                txtharga.setText(nf.format(0));
 
+        }
+ 
     }//GEN-LAST:event_cmbnmActionPerformed
 
     private void btnjmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnjmlActionPerformed
-
+        int hasil = 0;
+        if(cbkeju.isSelected()){
+            hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 5000;
+        } if(cbsosis.isSelected()){
+            hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 8000;
+        } if(cbdaging.isSelected()){
+            hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 10000;
+        }
+        if(cbkeju.isSelected() && cbsosis.isSelected()){
+            hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 13000;
+        }
+        if(cbkeju.isSelected() && cbdaging.isSelected()){
+            hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 15000;
+        }
+        if(cbsosis.isSelected() && cbdaging.isSelected()){
+            hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 18000;
+        }
+        if(cbkeju.isSelected() && cbdaging.isSelected() && cbsosis.isSelected()){
+            hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 23000;
+        }
+        hasil = Integer.parseInt(txtharga.getText().replace(".", ""));
+        txtjml.setText(nf.format(hasil));
+ 
     }//GEN-LAST:event_btnjmlActionPerformed
 
     private void btnkembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkembalianActionPerformed
