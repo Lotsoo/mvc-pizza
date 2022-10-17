@@ -6,7 +6,7 @@ package view;
 
 import java.text.NumberFormat;
 import java.util.Locale;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,9 +17,7 @@ public class Kasir extends javax.swing.JFrame {
     /**
      * Creates new form Kasir
      */
-    
     NumberFormat nf = NumberFormat.getNumberInstance(new Locale("in", "ID"));
-
 
     public Kasir() {
         initComponents();
@@ -284,37 +282,55 @@ public class Kasir extends javax.swing.JFrame {
                 txtharga.setText(nf.format(0));
 
         }
- 
+
     }//GEN-LAST:event_cmbnmActionPerformed
 
     private void btnjmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnjmlActionPerformed
         int hasil = 0;
-        if(cbkeju.isSelected()){
+        hasil = Integer.parseInt(txtharga.getText().replace(".", ""));
+        if (cbkeju.isSelected()) {
             hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 5000;
-        } if(cbsosis.isSelected()){
+        }
+        if (cbsosis.isSelected()) {
             hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 8000;
-        } if(cbdaging.isSelected()){
+        }
+        if (cbdaging.isSelected()) {
             hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 10000;
         }
-        if(cbkeju.isSelected() && cbsosis.isSelected()){
+        if (cbkeju.isSelected() && cbsosis.isSelected()) {
             hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 13000;
         }
-        if(cbkeju.isSelected() && cbdaging.isSelected()){
+        if (cbkeju.isSelected() && cbdaging.isSelected()) {
             hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 15000;
         }
-        if(cbsosis.isSelected() && cbdaging.isSelected()){
+        if (cbsosis.isSelected() && cbdaging.isSelected()) {
             hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 18000;
         }
-        if(cbkeju.isSelected() && cbdaging.isSelected() && cbsosis.isSelected()){
+        if (cbkeju.isSelected() && cbdaging.isSelected() && cbsosis.isSelected()) {
             hasil = Integer.parseInt(txtharga.getText().replace(".", "")) + 23000;
         }
-        hasil = Integer.parseInt(txtharga.getText().replace(".", ""));
         txtjml.setText(nf.format(hasil));
- 
+
     }//GEN-LAST:event_btnjmlActionPerformed
 
     private void btnkembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkembalianActionPerformed
-        
+        int jharga, bayar, hasil = 0;
+        jharga = Integer.parseInt(txtjml.getText().replace(".", ""));
+        bayar = Integer.parseInt(txttotal.getText().replace(".", ""));
+        if (jharga > bayar) {
+            JOptionPane.showMessageDialog(null, "Uang anda tidak cukup");
+            txtkembalian.setText("");
+        } else if (jharga == bayar) {
+            JOptionPane.showMessageDialog(null, "Uang anda pas");
+            txtkembalian.setText(nf.format(hasil));;
+        } //       hasil = bayar - jharga;
+        else {
+            hasil = bayar - jharga;
+            JOptionPane.showMessageDialog(null, "Uang kembali " + hasil);
+            txtkembalian.setText(nf.format(hasil));
+
+        }
+
     }//GEN-LAST:event_btnkembalianActionPerformed
 
     /**
